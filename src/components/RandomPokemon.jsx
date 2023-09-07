@@ -11,10 +11,13 @@ export default function RandomPokemon() {
   const url = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${random}.png`;
 
   return (
-    <div className='border-solid border-black border-2'>
+    <>
+    <div className="border-solid border-black border-2 rounded-xl">
       <h1>Pokemon #{random}</h1>
       <img src={url} alt={`Pokemon #${random}`} />
-      <button onClick={handleRefresh} className='m-10'>Refresh</button>
+      <button onClick={handleRefresh} className='m-10 bg-red-500 border-solid border-black border-2'>Refresh</button>
+
     </div>
+  </>
   );
 }
