@@ -16,5 +16,8 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
+    'react/prop-types':'off',
   },
 }
+//'react/prop-types':'off',
+// ctrl+shift+p => eslint:restart ESLint Server
