@@ -23,8 +23,8 @@ export default function ScoreKeeper({numPlayers, target}) {
         <ul>
             {points.map((point,idx)=>{
                 return (
-                    <li key={idx}>
-                        Player{idx+1}:{point}
+                    <li key={idx} className="w-24">
+                        Player {idx+1}: {point}
                         <button onClick={()=>increment(idx)}>+1</button>
                         {point>=target && "Winner"}
                     </li>
