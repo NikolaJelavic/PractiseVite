@@ -1,6 +1,7 @@
 import PropertyList from "../components/PropertyList";
 import Clicker from "../components/Clicker";
-import ScoreKeeper from "../components/ScoreKeeper";
+
+import RandomPokemon from "../components/RandomPokemon";
 
 const properties = [
   { id: 10, name: "Desert  Yurt", rating: 4.9, price: 150 },
@@ -16,9 +17,8 @@ export default function One() {
     <>
       <Clicker message="Hi!" buttonText="CLick me" />
       <PropertyList properties={properties} />
-      <ScoreKeeper numPlayers={10} target={5}  />
+      
+      <RandomPokemon />
     </>
   );
 }
-
-// target={3}

@@ -12,10 +12,10 @@ export default function RandomPokemon() {
 
   return (
     <>
-    <div className="border-solid border-black border-2 rounded-xl">
-      <h1>Pokemon #{random}</h1>
+    <div className="border-solid border-black border-2 rounded-xl w-36">
+      <h2>Pokemon #{random}</h2>
       <img src={url} alt={`Pokemon #${random}`} />
-      <button onClick={handleRefresh} className='m-10 bg-red-500 border-solid border-black border-2'>Refresh</button>
+      <button onClick={handleRefresh} className='m-5 bg-red-500 border-solid border-black border-2'>Refresh</button>
 
     </div>
   </>
