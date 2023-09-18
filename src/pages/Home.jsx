@@ -1,4 +1,5 @@
 import RandomColor from "../components/RandomColor";
+import ShoppingList from "../components/ShoppingList";
 import ShoppingListForm from "../components/ShoppingListForm";
 const colors = [
   "#E53935",
@@ -21,9 +22,10 @@ const colors = [
 
 export default function Home() {
   return (
-    <div className="flex h-screen justify-center items-center ">
-      <ShoppingListForm/>
-      <div className="flex justify-center flex-wrap w-96 h-80 ">
+    <div className="flex h-screen justify-center items-center flex-col ">
+      <ShoppingList />
+      {/* <ShoppingListForm/> */}
+      <div className="flex justify-center flex-wrap w-96 h-80 m-20">
         {colors.map((color, index) => (
           <RandomColor key={index} colors={colors} />
         ))}
