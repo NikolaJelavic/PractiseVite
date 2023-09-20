@@ -3,6 +3,7 @@ import Clicker from "../components/Clicker";
 import Rating from '@mui/material/Rating';
 import RandomPokemon from "../components/RandomPokemon";
 import { useState } from "react";
+import Box from '@mui/material/Box';
 
 const properties = [
   { id: 10, name: "Desert  Yurt", rating: 4.9, price: 150 },
@@ -20,8 +21,9 @@ export default function One() {
       <Clicker message="Hi!" buttonText="CLick me" />
       <PropertyList properties={properties} />
       
-      <RandomPokemon />
       <h1>Curresnt Score: {value}</h1>
+      <Box sx={{border:"1px solid red", p:2, width:200}}>
+      <RandomPokemon />
       <Rating
         name="simple-controlled"
         value={value}
@@ -29,6 +31,7 @@ export default function One() {
           setValue(newValue);
         }}
       />
+      </Box>
     </>
   );
 }
