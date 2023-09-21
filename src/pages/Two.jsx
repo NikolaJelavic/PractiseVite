@@ -1,8 +1,21 @@
-
+import { useState, useEffect } from 'react';
 
 
 export default function Two() {
+    const [currentTime, setCurrentTime] = useState(new Date());
+    useEffect(() => {
+        // Update the current time every second
+        const intervalId = setInterval(() => {
+          setCurrentTime(new Date());
+        }, 1000);
+    
+        // Clean up the interval on unmount
+        return () => clearInterval(intervalId);
+      }, []);
+    
+      const formattedTime = currentTime.toLocaleTimeString();
     return <div>
-        <h1><center>Two</center></h1>
-    </div>
+    <h1>Clock App</h1>
+    <p>Current Time: {formattedTime}</p>
+  </div>
 };
