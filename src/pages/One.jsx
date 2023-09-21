@@ -21,7 +21,7 @@ export default function One() {
       <Clicker message="Hi!" buttonText="CLick me" />
       <PropertyList properties={properties} />
       
-      <h1>Curresnt Score: {value}</h1>
+      <h1>Rated Pokemon: {value}</h1>
       <Box sx={{border:"1px solid red", p:2, width:200}}>
       <RandomPokemon />
       <Rating
