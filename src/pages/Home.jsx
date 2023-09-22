@@ -23,7 +23,7 @@ const colors = [
 export default function Home() {
   return (
     <div className="flex h-screen justify-center items-center flex-col ">
-      <ShoppingList />
+      {/* <ShoppingList /> */}
       {/* <ShoppingListForm/> */}
       <div className="flex justify-center flex-wrap w-96 h-80 m-20">
         {colors.map((color, index) => (
