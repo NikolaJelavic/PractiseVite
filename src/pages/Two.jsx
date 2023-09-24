@@ -1,4 +1,7 @@
+
+
 import { useState, useEffect } from 'react';
+import Quotes from '../components/Quotes';
 
 
 export default function Two() {
@@ -17,5 +20,7 @@ export default function Two() {
     return <div>
     <h1>Clock App</h1>
     <p>Current Time: {formattedTime}</p>
+
+    <Quotes/>
   </div>
 };
