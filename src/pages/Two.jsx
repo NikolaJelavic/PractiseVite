@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Quotes from '../components/Quotes';
 import ToDo from '../components/ToDo';
-
+import NavbarTodo from '../components/NavbarTodo';
 
 export default function Two() {
     const [currentTime, setCurrentTime] = useState(new Date());
@@ -23,6 +23,7 @@ export default function Two() {
     <p>Current Time: {formattedTime}</p>
 
     <Quotes/>
+    <NavbarTodo/>
     <ToDo />
   </div>
 };
