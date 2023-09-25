@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Quotes from '../components/Quotes';
+import ToDo from '../components/ToDo';
 
 
 export default function Two() {
@@ -22,5 +23,6 @@ export default function Two() {
     <p>Current Time: {formattedTime}</p>
 
     <Quotes/>
+    <ToDo />
   </div>
 };
