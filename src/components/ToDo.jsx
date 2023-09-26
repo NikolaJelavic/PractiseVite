@@ -1,19 +1,38 @@
 import List from "@mui/material/List";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TodoItem from "./TodoItem";
-const initialTodos = [
-  { id: 1, text: "walk the dog", completed: false },
-  { id: 2, text: "walk the cat", completed: false },
-  { id: 3, text: "walk the pig", completed: true },
-  { id: 4, text: "walk the fish", completed: false },
-];
+import TodoForm from "./TodoForm";
+// const initialTodos = [
+//   { id: 1, text: "walk the dog", completed: false },
+//   { id: 2, text: "walk the cat", completed: false },
+//   { id: 3, text: "walk the pig", completed: true },
+//   { id: 4, text: "walk the fish", completed: false },
+// ];
+
+const getInitialData= () => {
+    const data = JSON.parse(localStorage.getItem("todos"))
+    if(!data) return [];
+    return data;
+}
 
 export default function ToDo() {
-  const [todos, setTodos] = useState(initialTodos);
+  const [todos, setTodos] = useState(getInitialData);
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   const removeTodo = (id) => {
     setTodos((prevTodos) => {
       return prevTodos.filter((todo) => todo.id !== id);
+    });
+  };
+
+  
+
+  const addTodo = (text) => {
+    setTodos((prevTodos) => {
+      return [...prevTodos, { text: text, id: crypto.randomUUID(), completed: false }];
     });
   };
 
@@ -23,7 +42,7 @@ export default function ToDo() {
         if (todo.id === id) {
           return { ...todo, completed: !todo.completed };
         } else {
-          return todo; // Return the unchanged todo if the id doesn't match
+          return todo; 
         }
       });
     });
@@ -39,6 +58,7 @@ export default function ToDo() {
           toggle={toggleTodo}
         />
       ))}
+      <TodoForm addTodo={addTodo} />
     </List>
   );
 }
