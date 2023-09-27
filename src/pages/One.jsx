@@ -1,9 +1,9 @@
 import PropertyList from "../components/PropertyList";
-import Clicker from "../components/Clicker";
-import Rating from '@mui/material/Rating';
-import RandomPokemon from "../components/RandomPokemon";
-import { useState } from "react";
-import Box from '@mui/material/Box';
+// import Clicker from "../components/Clicker";
+
+
+
+import Quotes from '../components/Quotes';
 
 const properties = [
   { id: 10, name: "Desert  Yurt", rating: 4.9, price: 150 },
@@ -15,23 +15,15 @@ const properties = [
 ];
 
 export default function One() {
-  const [value, setValue] = useState(2);
+  
   return (
-    <>
-      <Clicker message="Hi!" buttonText="CLick me" />
+    <div className="flex">
+      {/* <Clicker message="Hi!" buttonText="CLick me" /> */}
       <PropertyList properties={properties} />
+
       
-      <h1>Rated Pokemon: {value}</h1>
-      <Box sx={{border:"1px solid red", p:2, width:200}}>
-      <RandomPokemon />
-      <Rating
-        name="simple-controlled"
-        value={value}
-        onChange={(event, newValue) => {
-          setValue(newValue);
-        }}
-      />
-      </Box>
-    </>
+
+      <Quotes />
+    </div>
   );
 }
