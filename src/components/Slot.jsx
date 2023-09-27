@@ -5,7 +5,7 @@ export default function Slot({val1,val2,val3}) {
     let randomArray3=array[Math.floor(Math.random()*3)]
     return (
       <>
-      <div className="border-solid border-black border-2 rounded-xl">
+      <div className="border-solid border-black border-2 rounded-xl w-20">
         {randomArray1==randomArray2 && randomArray2==randomArray3 ? <div><h3 className="text-green-400">You win!</h3><p className="text-green-400">Congrats!</p></div> : <h3 className="text-red-400">You lose!</h3>}
         {/* {val2===val3? <h3>WIN</h3>: null} */}
         {randomArray1+randomArray2+randomArray3} 

@@ -16,7 +16,7 @@ export default function Quotes() {
         setQuote(randomQuote);
     }
 
-    return <div>
+    return <div className="m-2">
         <button onClick={fetchQuote}>Get Quote Using handler</button>
         <h2>{quote.text}</h2>
         <h3>{quote.author}</h3>
