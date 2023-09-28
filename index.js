@@ -18,7 +18,12 @@ app.get('/ejs', (req, res) => {
   res.render('home.ejs');
 });
 
-const PORT = process.env.PORT || 3000;
+app.get('/r/:subreddit',(req,res)=>{
+  const {subreddit} = req.params;
+  res.render('subreddit', {subreddit})
+})
+
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
