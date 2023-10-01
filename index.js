@@ -5,9 +5,12 @@ import { dirname } from 'path';
 import express from 'express';
 import path from 'path';
 // import ejs from 'ejs';
+import redditData from './data.json' assert { type: 'json' };
 
+// const redditData = require('./data.json')
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+console.log(redditData);
 
 const app = express();
 
@@ -18,16 +21,22 @@ app.get('/ejs', (req, res) => {
   res.render('home.ejs');
 });
 
-app.get('/r/:subreddit',(req,res)=>{
-  const {subreddit} = req.params;
-  res.render('subreddit', {subreddit})
-})
+app.get('/r/:subreddit', (req, res) => {
+  const { subreddit } = req.params;
+  const data = redditData[subreddit];
+  const name = subreddit;
+  const description = data.description;
+  const subscribers = data.subscribers; 
+  const posts = data.posts; 
+
+  res.render('subreddit', { name, description, subscribers, posts }); 
+});
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-
+ 
 
 
 
