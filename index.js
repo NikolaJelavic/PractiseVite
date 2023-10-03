@@ -1,15 +1,15 @@
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 import express from "express";
-const express = require("express");
 import path from "path";
 import ejs from "ejs";
+import mongoose from "mongoose"; 
+
 import redditData from "./data.json" assert { type: "json" };
 
-// Create a function to connect to MongoDB
+
 const connectToMongoDB = async () => {
   try {
-    // Use await to ensure that the connection is established before continuing
     await mongoose.connect("mongodb://127.0.0.1:27017/MovieApp");
     console.log("Connected to MongoDB");
   } catch (error) {
@@ -17,10 +17,9 @@ const connectToMongoDB = async () => {
   }
 };
 
-// Call the function to connect to MongoDB
+
 connectToMongoDB();
 
-// const redditData = require('./data.json')
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 console.log(redditData);
@@ -45,13 +44,6 @@ app.get("/r/:subreddit", (req, res) => {
   res.render("subreddit", { name, description, subscribers, posts });
 });
 
-const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
-const mongoose = require("mongoose");
-const express = require("express");
-
 const movieSchema = new mongoose.Schema({
   title: String,
   year: Number,
@@ -59,13 +51,39 @@ const movieSchema = new mongoose.Schema({
   rating: String,
 });
 
+
 const Movie = mongoose.model("Movie", movieSchema);
-const amadeus = new Movie({
-  title: "Amadeus",
-  year: 1986,
-  score: 9.2,
-  ratings: "R",
+
+
+Movie.insertMany([
+  { title: "Amelie", year: 2001, score: 8.3, rating: "R" },
+  { title: "Alien", year: 1979, score: 8.1, rating: "R" },
+  { title: "The Iron Giant", year: 1999, score: 7.5, rating: "PG" },
+  { title: "Stand by Me", year: 1986, score: 8.6, rating: "PG-13" },
+])
+  .then((data) => {
+    console.log("Data inserted successfully.");
+    console.log(data);
+  })
+  .catch((error) => {
+    console.error("Error inserting data:", error);
+  });
+
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
+
+
+
+
+
+
+
+
+
+
+
 
 // import { franc } from 'franc';
 // import langs from 'langs';
