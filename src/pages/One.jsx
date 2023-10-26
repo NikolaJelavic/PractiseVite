@@ -1,7 +1,12 @@
 import PropertyList from "../components/PropertyList";
 // import Clicker from "../components/Clicker";
+import Quotes from "../components/Quotes";
 import SearchBar from "../components/Cars/SearchBar";
-import Quotes from '../components/Quotes';
+import ImageList from '../components/Cars/ImageList'
+import searchImages from "../api";
+
+import { useState } from 'react';
+
 
 const properties = [
   { id: 10, name: "Desert  Yurt", rating: 4.9, price: 150 },
@@ -13,19 +18,25 @@ const properties = [
 ];
 
 export default function One() {
-  
-  const handleSubmit = (term) => {
-    console.log('Do a search with', term);
-  }
+
+  const [images, setImages] = useState([]);
+
+
+  const handleSubmit = async (term) => {
+    // console.log("Do a search with", term);
+    const result = await searchImages(term);
+    setImages(result);
+    console.log(result);
+  };
 
   return (
-    <div className="flex">
+    <div >
       {/* <Clicker message="Hi!" buttonText="CLick me" /> */}
-      <PropertyList properties={properties} />
-      
+      {/* <PropertyList properties={properties} /> */}
 
-      <Quotes />
-      <SearchBar onSubmit={handleSubmit}/>
+      {/* <Quotes /> */}
+      <SearchBar onSubmit={handleSubmit} />
+      <ImageList images={images} />
     </div>
   );
 }
