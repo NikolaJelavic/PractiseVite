@@ -5,7 +5,11 @@ import SearchBar from "../components/Cars/SearchBar";
 import ImageList from '../components/Cars/ImageList'
 import searchImages from "../api";
 
+import BookCreate from "../components/Books/BookCreate";
+import BookList from "../components/Books/BookList";
+
 import { useState } from 'react';
+import { BookSharp } from "@mui/icons-material";
 
 
 const properties = [
@@ -20,7 +24,24 @@ const properties = [
 export default function One() {
 
   const [images, setImages] = useState([]);
+  const [books,setBooks] = useState([]);
 
+  const createBook = (title)=> {
+    const updateBooks=[
+      ...books,
+      {id:Math.round(Math.random()*9999),
+         title} //  == title:title
+    ]
+    setBooks(updateBooks);
+    console.log('Need to add book with:', title);
+  }
+
+  const deleteBookById = (id) => {
+const updatedBooks = books.filter((book)=>{
+  return book.id !==id;
+})
+setBooks(updatedBooks)
+  }
 
   const handleSubmit = async (term) => {
     // console.log("Do a search with", term);
@@ -35,8 +56,10 @@ export default function One() {
       {/* <PropertyList properties={properties} /> */}
 
       {/* <Quotes /> */}
-      <SearchBar onSubmit={handleSubmit} />
-      <ImageList images={images} />
+      {/* <SearchBar onSubmit={handleSubmit} /> */}
+      {/* <ImageList images={images} /> */}
+      <BookCreate onCreate={createBook}/>
+      <BookList books={books} onDelete={deleteBookById}/>
     </div>
   );
 }
