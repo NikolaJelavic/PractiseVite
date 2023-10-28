@@ -8,7 +8,7 @@ import searchImages from "../api";
 import BookCreate from "../components/Books/BookCreate";
 import BookList from "../components/Books/BookList";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BookSharp } from "@mui/icons-material";
 import axios from "axios";
 
@@ -25,12 +25,35 @@ export default function One() {
   const [images, setImages] = useState([]);
   const [books, setBooks] = useState([]);
 
-  const editBookById = (id, newTitle) => {
+  const fetchBooks = async () => {
+    const response = await axios.get('http://localhost:3001/books');
+
+    setBooks(response.data);
+  }
+
+  useEffect(()=>{
+    fetchBooks();
+  },[])
+
+  const editBookById = async (id, newTitle) => {
+    const response = await axios.put(`http://localhost:3001/books/${id}`,{
+      title:newTitle,
+    })
+
     const updatedBooks = books.map((book) => {
       if (book.id === id) {
-        return { ...book, title: newTitle };
+        return { ...book, ...response.data };
       }
       return book;
+    });
+    setBooks(updatedBooks);
+  };
+
+  const deleteBookById = async (id) => {
+    await axios.delete(`http://localhost:3001/books/${id}`);
+
+    const updatedBooks = books.filter((book) => {
+      return book.id !== id;
     });
     setBooks(updatedBooks);
   };
@@ -48,12 +71,6 @@ export default function One() {
         // console.log('Need to add book with:', title);
   };
 
-  const deleteBookById = (id) => {
-    const updatedBooks = books.filter((book) => {
-      return book.id !== id;
-    });
-    setBooks(updatedBooks);
-  };
 
   const handleSubmit = async (term) => {
     // console.log("Do a search with", term);
