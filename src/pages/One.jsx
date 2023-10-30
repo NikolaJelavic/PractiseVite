@@ -1,8 +1,6 @@
 import PropertyList from "../components/PropertyList";
 // import Clicker from "../components/Clicker";
-
-
-
+import SearchBar from "../components/Cars/SearchBar";
 import Quotes from '../components/Quotes';
 
 const properties = [
@@ -16,14 +14,18 @@ const properties = [
 
 export default function One() {
   
+  const handleSubmit = (term) => {
+    console.log('Do a search with', term);
+  }
+
   return (
     <div className="flex">
       {/* <Clicker message="Hi!" buttonText="CLick me" /> */}
       <PropertyList properties={properties} />
-
       
 
       <Quotes />
+      <SearchBar onSubmit={handleSubmit}/>
     </div>
   );
 }
