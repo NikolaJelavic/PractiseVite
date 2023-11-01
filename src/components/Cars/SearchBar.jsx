@@ -1,12 +1,12 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 function SearchBar({ onSubmit }) {
-  const [term, setTerm] = useState('');
+  const [term, setTerm] = useState("");
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
 
-    onSubmit('asdf');
+    onSubmit(term);
   };
 
   const handleChange = (event) => {
@@ -16,8 +16,16 @@ function SearchBar({ onSubmit }) {
 
   return (
     <div>
-      <form onSubmit={handleFormSubmit} className='border-2 border-indigo-600'>
-        <input value={term} onChange={handleChange} />
+      <form
+        onSubmit={handleFormSubmit}
+        className="border-2 border-slate-200 w-1/3 m-3"
+      >
+        <label>Enter Search Term</label>
+        <input
+          value={term}
+          onChange={handleChange}
+          className="border-2 border-indigo-600 m-3 "
+        />
       </form>
     </div>
   );
