@@ -26,6 +26,16 @@ export default function One() {
   const [images, setImages] = useState([]);
   const [books,setBooks] = useState([]);
 
+  const editBookById=(id,newTitle)=>{
+      const updatedBooks = books.map((book)=>{
+        if (book.id===id){
+          return {...book,title:newTitle}
+        }
+        return book;
+      })
+      setBooks(updatedBooks)
+  }
+
   const createBook = (title)=> {
     const updateBooks=[
       ...books,
@@ -59,7 +69,8 @@ setBooks(updatedBooks)
       {/* <SearchBar onSubmit={handleSubmit} /> */}
       {/* <ImageList images={images} /> */}
       <BookCreate onCreate={createBook}/>
-      <BookList books={books} onDelete={deleteBookById}/>
+      <h1>Reading List</h1>
+      <BookList books={books} onDelete={deleteBookById} onEdit={editBookById}/>
     </div>
   );
 }
