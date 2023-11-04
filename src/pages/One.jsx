@@ -2,15 +2,15 @@ import PropertyList from "../components/PropertyList";
 // import Clicker from "../components/Clicker";
 import Quotes from "../components/Quotes";
 import SearchBar from "../components/Cars/SearchBar";
-import ImageList from '../components/Cars/ImageList'
+import ImageList from "../components/Cars/ImageList";
 import searchImages from "../api";
 
 import BookCreate from "../components/Books/BookCreate";
 import BookList from "../components/Books/BookList";
 
-import { useState } from 'react';
+import { useState } from "react";
 import { BookSharp } from "@mui/icons-material";
-
+import axios from "axios";
 
 const properties = [
   { id: 10, name: "Desert  Yurt", rating: 4.9, price: 150 },
@@ -22,36 +22,38 @@ const properties = [
 ];
 
 export default function One() {
-
   const [images, setImages] = useState([]);
-  const [books,setBooks] = useState([]);
+  const [books, setBooks] = useState([]);
 
-  const editBookById=(id,newTitle)=>{
-      const updatedBooks = books.map((book)=>{
-        if (book.id===id){
-          return {...book,title:newTitle}
-        }
-        return book;
-      })
-      setBooks(updatedBooks)
-  }
+  const editBookById = (id, newTitle) => {
+    const updatedBooks = books.map((book) => {
+      if (book.id === id) {
+        return { ...book, title: newTitle };
+      }
+      return book;
+    });
+    setBooks(updatedBooks);
+  };
 
-  const createBook = (title)=> {
-    const updateBooks=[
-      ...books,
-      {id:Math.round(Math.random()*9999),
-         title} //  == title:title
-    ]
-    setBooks(updateBooks);
-    console.log('Need to add book with:', title);
-  }
+  const createBook = async (title) => {
+    const response = await axios.post("http://localhost:3001/books", {
+      title,
+    });
+    
+        const updateBooks=[
+          ...books,
+          response.data
+        ]
+        setBooks(updateBooks);
+        // console.log('Need to add book with:', title);
+  };
 
   const deleteBookById = (id) => {
-const updatedBooks = books.filter((book)=>{
-  return book.id !==id;
-})
-setBooks(updatedBooks)
-  }
+    const updatedBooks = books.filter((book) => {
+      return book.id !== id;
+    });
+    setBooks(updatedBooks);
+  };
 
   const handleSubmit = async (term) => {
     // console.log("Do a search with", term);
@@ -61,16 +63,16 @@ setBooks(updatedBooks)
   };
 
   return (
-    <div >
+    <div>
       {/* <Clicker message="Hi!" buttonText="CLick me" /> */}
       {/* <PropertyList properties={properties} /> */}
 
       {/* <Quotes /> */}
       {/* <SearchBar onSubmit={handleSubmit} /> */}
       {/* <ImageList images={images} /> */}
-      <BookCreate onCreate={createBook}/>
+      <BookCreate onCreate={createBook} />
       <h1>Reading List</h1>
-      <BookList books={books} onDelete={deleteBookById} onEdit={editBookById}/>
+      <BookList books={books} onDelete={deleteBookById} onEdit={editBookById} />
     </div>
   );
 }
