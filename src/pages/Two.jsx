@@ -2,10 +2,8 @@ import { useState, useEffect } from "react";
 
 import ToDo from "../components/ToDo";
 import NavbarTodo from "../components/NavbarTodo";
-import Button from "../components/Button/Button";
 
-import { GoBell  } from "react-icons/go";
-// import { GoCloudDownload, GoDatabase } from "react-icons/go";
+
 
 
 export default function Two() {
@@ -21,9 +19,7 @@ export default function Two() {
   }, []);
 
 
-  const handleClick=()=>{
-    console.log('Click');
-  }
+
   const formattedTime = currentTime.toLocaleTimeString();
   return (
     <div>
@@ -33,32 +29,7 @@ export default function Two() {
       <NavbarTodo />
       <ToDo />
 
-      <div>
-        <div>
-          <Button success outline rounded onClick={handleClick} >
-            <GoBell />
-            Click me
-          </Button>
-        </div>
-        <div>
-          <Button danger outline >
-            {/* <GoCloudDownload /> */}
-            Buy now
-          </Button>
-        </div>
-        <div>
-          <Button warning outline >
-            {/* <GoDatabase /> */}
-            See Deal
-          </Button>
-        </div>
-        <div>
-          <Button secondary>Hide Ads</Button>
-        </div>
-        <div>
-          <Button primary>Something</Button>
-        </div>
-      </div>
+      
     </div>
   );
 }
