@@ -8,7 +8,7 @@ import {Provider} from "./components/context/books.jsx";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
-      <Provider value={5}>
+      <Provider >
         <App />
       </Provider>
     </BrowserRouter>

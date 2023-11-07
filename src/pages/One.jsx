@@ -7,10 +7,10 @@ import searchImages from "../api";
 
 import BookCreate from "../components/Books/BookCreate";
 import BookList from "../components/Books/BookList";
+import BooksContext from "../components/context/books";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { BookSharp } from "@mui/icons-material";
-import axios from "axios";
 
 const properties = [
   { id: 10, name: "Desert  Yurt", rating: 4.9, price: 150 },
@@ -23,54 +23,14 @@ const properties = [
 
 export default function One() {
   const [images, setImages] = useState([]);
-  const [books, setBooks] = useState([]);
 
-  const fetchBooks = async () => {
-    const response = await axios.get('http://localhost:3001/books');
-
-    setBooks(response.data);
-  }
-
+  const {fetchBooks}=useContext(BooksContext)
+ 
   useEffect(()=>{
     fetchBooks();
   },[])
 
-  const editBookById = async (id, newTitle) => {
-    const response = await axios.put(`http://localhost:3001/books/${id}`,{
-      title:newTitle,
-    })
-
-    const updatedBooks = books.map((book) => {
-      if (book.id === id) {
-        return { ...book, ...response.data };
-      }
-      return book;
-    });
-    setBooks(updatedBooks);
-  };
-
-  const deleteBookById = async (id) => {
-    await axios.delete(`http://localhost:3001/books/${id}`);
-
-    const updatedBooks = books.filter((book) => {
-      return book.id !== id;
-    });
-    setBooks(updatedBooks);
-  };
-
-  const createBook = async (title) => {
-    const response = await axios.post("http://localhost:3001/books", {
-      title,
-    });
-    
-        const updateBooks=[
-          ...books,
-          response.data
-        ]
-        setBooks(updateBooks);
-        // console.log('Need to add book with:', title);
-  };
-
+  
 
   const handleSubmit = async (term) => {
     // console.log("Do a search with", term);
@@ -87,9 +47,9 @@ export default function One() {
       {/* <Quotes /> */}
       {/* <SearchBar onSubmit={handleSubmit} /> */}
       {/* <ImageList images={images} /> */}
-      <BookCreate onCreate={createBook} />
+      <BookCreate  />
       <h1>Reading List</h1>
-      <BookList books={books} onDelete={deleteBookById} onEdit={editBookById} />
+      <BookList />
     </div>
   );
 }
