@@ -28,19 +28,19 @@ export default function Two() {
 
     <div>
       <div>
-        <Button success rounded>Click here</Button>
+        <Button success rounded>Click me</Button>
       </div>
       <div>
-        <Button>2</Button>
+        <Button danger>Buy now</Button>
       </div>
       <div>
-        <Button>3</Button>
+        <Button warning> 3</Button>
       </div>
       <div>
-        <Button>4</Button>
+        <Button secondary>4</Button>
       </div>
       <div>
-        <Button>5</Button>
+        <Button primary>5</Button>
       </div>
     </div>
   </div>
