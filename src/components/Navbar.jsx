@@ -8,6 +8,7 @@ export default function Navbar() {
         <Link to="/one" className="text-stone-900 hover:text-green-600 font-black text-xl">One</Link>
         <Link to="/two" className="text-stone-900 hover:text-green-600 font-black text-xl">Two</Link>
         <Link to="/games" className="text-stone-900 hover:text-green-600 font-black text-xl">Games</Link>
+        <Link to="/ButtonPage" className="text-stone-900 hover:text-green-600 font-black text-xl">ButtonPage</Link>
       </ul>
     </nav>
   )
