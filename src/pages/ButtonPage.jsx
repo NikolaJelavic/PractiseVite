@@ -49,7 +49,7 @@ export default function ButtonPage() {
       <div>
         <Button primary>Something</Button>
       </div>
-      <div className="m-5 border w-1/3">
+      <div className="m-5 border w-1/2">
         <Accordion items={items} />
       </div>
     </div>
