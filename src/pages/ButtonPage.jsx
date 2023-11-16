@@ -1,11 +1,15 @@
 import { GoBell } from "react-icons/go";
 // import { GoCloudDownload, GoDatabase } from "react-icons/go";
+import { useState } from "react";
 
 import Button from "../components/Button/Button";
 import Accordion from "../components/Button/Accordion";
 import Dropdown from "../components/Button/Dropdown";
 
+
 export default function ButtonPage() {
+  const [selection,setSelection]=useState(null)
+
   const items = [
     {
       id: 1,
@@ -27,6 +31,12 @@ export default function ButtonPage() {
   const handleClick = () => {
     console.log("Click");
   };
+
+  const handleSelect = (option) => {
+    setSelection(option)
+  }
+
+
 
   const options = [
     { label: "Red", value: "red" },
@@ -65,7 +75,7 @@ export default function ButtonPage() {
         <Accordion items={items} />
       </div>
       <div>
-        <Dropdown options={options}/>
+        <Dropdown options={options} value={selection} onChange={handleSelect}/>
       </div>
     </div>
   );
