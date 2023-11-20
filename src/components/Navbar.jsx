@@ -32,22 +32,22 @@ export default function Navbar() {
         </Link>
         {/* <Link to="/one" className="text-stone-900 hover:text-green-600 font-black text-xl">One</Link> */}
         {/* <Link to="/two" className="text-stone-900 hover:text-green-600 font-black text-xl">Two</Link> */}
-        <Link
+        <div
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           className="text-stone-900 font-black hover:text-green-600 text-xl"
         >
           <div>Dropdown1</div>
           {isDropdownVisible && <Dropdown1 />}
-        </Link>
-        <Link
+        </div>
+        <div
           onMouseEnter={handleMouseEnter2}
           onMouseLeave={handleMouseLeave2}
           className="text-stone-900 font-black hover:text-green-600 text-xl"
         >
           <div>Dropdown2</div>
           {isDropdownVisible2 && <Dropdown2 />}
-        </Link>
+        </div>
         {/* <Link
           to="/games"
           className="text-stone-900 hover:text-green-600 font-black text-xl"
