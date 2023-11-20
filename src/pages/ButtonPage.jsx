@@ -74,8 +74,9 @@ export default function ButtonPage() {
       <div className="m-5 border w-1/2">
         <Accordion items={items} />
       </div>
-      <div>
+      <div className="flex">
         <Dropdown options={options} value={selection} onChange={handleSelect}/>
+        
       </div>
     </div>
   );
