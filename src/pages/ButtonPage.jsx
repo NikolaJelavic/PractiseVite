@@ -5,6 +5,7 @@ import { useState } from "react";
 import Button from "../components/Button/Button";
 import Accordion from "../components/Button/Accordion";
 import Dropdown from "../components/Button/Dropdown";
+import ModalPage from "../components/Button/ModalPage";
 
 
 export default function ButtonPage() {
@@ -77,6 +78,9 @@ export default function ButtonPage() {
       <div className="flex">
         <Dropdown options={options} value={selection} onChange={handleSelect}/>
         
+      </div>
+      <div>
+        <ModalPage/>
       </div>
     </div>
   );
