@@ -6,10 +6,10 @@ import Button from "../components/Button/Button";
 import Accordion from "../components/Button/Accordion";
 import Dropdown from "../components/Button/Dropdown";
 import ModalPage from "../components/Button/ModalPage";
-
+import Table from "../components/Button/Table";
 
 export default function ButtonPage() {
-  const [selection,setSelection]=useState(null)
+  const [selection, setSelection] = useState(null);
 
   const items = [
     {
@@ -34,16 +34,28 @@ export default function ButtonPage() {
   };
 
   const handleSelect = (option) => {
-    setSelection(option)
-  }
-
-
+    setSelection(option);
+  };
 
   const options = [
     { label: "Red", value: "red" },
     { label: "Green", value: "green" },
     { label: "Blue", value: "blue" },
   ];
+
+  const data = [
+    { name: "Orange", color: "bg-orange-500", score: 5 },
+    { name: "Apple", color: "bg-red-500", score: 3 },
+    { name: "Banana", color: "bg-yellow-500", score: 1 },
+    { name: "Lime", color: "bg-green-500", score: 4 },
+  ];
+
+  const config = [
+    { label: "Name", render: (data) => data.name },
+    { label: "Color", render:(data) => data.color},
+    { label: "Score", render:(data) => data.score },
+  ];
+
   return (
     <div>
       <div className="flex">
@@ -75,15 +87,15 @@ export default function ButtonPage() {
       <div className="m-5 border w-1/2">
         <Accordion items={items} />
       </div>
-      <div className="flex">
-        <Dropdown options={options} value={selection} onChange={handleSelect}/>
-        
+      <div className="flex m-5">
+        <Dropdown options={options} value={selection} onChange={handleSelect} />
       </div>
-      <div>
-        <ModalPage/>
+      <div className="m-5">
+        <ModalPage />
+      </div>
+      <div className="m-5">
+        <Table data={data} config={config} />
       </div>
     </div>
   );
 }
-
-
