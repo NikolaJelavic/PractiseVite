@@ -1,19 +1,29 @@
-export default function Table({ data, config }) {
+import { Fragment } from "react";
+
+
+
+export default function Table({ data, config, keyFn }) {
   const renderedHeaders = config.map((column) => {
+
+    if(column.header){
+      return <Fragment key={column.label}>{column.header()}</Fragment>
+    }
     return <th key={column.label}>{column.label}</th>;
   });
 
-  const fruitsData = data.map((data) => {
-    const renderedCells = config.map((column) => (
-      <td className="p-2" key={column.label}>
-        {column.render(data)}
-      </td>
-    ));
+  const renderedRows = data.map((rowData) => {
+    const renderedCells = config.map((column) => {
+      return (
+        <td className="p-2" key={column.label}>
+          {column.render(rowData)}
+        </td>
+      );
+    });
 
     return (
-      <tr key={data.name} className="border-b">
-        {renderedCells}
-      </tr>
+      <tr className="border-b" key={keyFn(rowData)}>
+      {renderedCells}
+    </tr>
     );
   });
 
@@ -22,7 +32,7 @@ export default function Table({ data, config }) {
       <thead>
         <tr className="border-b-2">{renderedHeaders}</tr>
       </thead>
-      <tbody>{fruitsData}</tbody>
+      <tbody>{renderedRows}</tbody>
     </table>
   );
 }
