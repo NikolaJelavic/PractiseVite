@@ -4,11 +4,15 @@ export default function Table({ data, config }) {
   });
 
   const fruitsData = data.map((data) => {
+    const renderedCells = config.map((column) => (
+      <td className="p-2" key={column.label}>
+        {column.render(data)}
+      </td>
+    ));
+
     return (
       <tr key={data.name} className="border-b">
-        <td className="p-3">{config[0].render(data)}</td>
-        <td className={`p-3 m-2 ${config[1].render(data)}`}></td>
-        <td className="p-3">{config[2].render(data)}</td>
+        {renderedCells}
       </tr>
     );
   });

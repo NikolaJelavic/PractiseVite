@@ -52,50 +52,61 @@ export default function ButtonPage() {
 
   const config = [
     { label: "Name", render: (data) => data.name },
-    { label: "Color", render:(data) => data.color},
-    { label: "Score", render:(data) => data.score },
+    {
+      label: "Color",
+      render: (data) => <div className={`p-3 m-2 ${data.color}`}></div>,
+    },
+    { label: "Score", render: (data) => data.score },
   ];
 
   return (
-    <div>
+    <>
+      <div className="flex flex-row">
+        <div className="flex">
+          <div>
+            <Button success outline rounded onClick={handleClick}>
+              <GoBell />
+              Click me
+            </Button>
+          </div>
+          <div>
+            <Button danger outline>
+              {/* <GoCloudDownload /> */}
+              Buy now
+            </Button>
+          </div>
+          <div>
+            <Button warning outline>
+              {/* <GoDatabase /> */}
+              See Deal
+            </Button>
+          </div>
+          <div>
+            <Button secondary>Hide Ads</Button>
+          </div>
+          <div>
+            <Button primary>Something</Button>
+          </div>
+        </div>
+        <div className="m-5 border w-1/4">
+          <Accordion items={items} />
+        </div>
+        <div className="flex m-5">
+          <Dropdown
+            options={options}
+            value={selection}
+            onChange={handleSelect}
+          />
+        </div>
+        <div className="m-5">
+          <ModalPage />
+        </div>
+      </div>
       <div className="flex">
-        <div>
-          <Button success outline rounded onClick={handleClick}>
-            <GoBell />
-            Click me
-          </Button>
-        </div>
-        <div>
-          <Button danger outline>
-            {/* <GoCloudDownload /> */}
-            Buy now
-          </Button>
-        </div>
-        <div>
-          <Button warning outline>
-            {/* <GoDatabase /> */}
-            See Deal
-          </Button>
-        </div>
-        <div>
-          <Button secondary>Hide Ads</Button>
-        </div>
-        <div>
-          <Button primary>Something</Button>
+        <div className="m-5">
+          <Table data={data} config={config} />
         </div>
       </div>
-      <div className="m-5 border w-1/2">
-        <Accordion items={items} />
-      </div>
-      <div className="flex m-5">
-        <Dropdown options={options} value={selection} onChange={handleSelect} />
-      </div>
-      <div className="m-5">
-        <ModalPage />
-      </div>
-      <div className="m-5">
-        <Table data={data} config={config} />
-      </div>
-    </div>
+    </>
   );
 }
