@@ -6,7 +6,8 @@ import Button from "../components/Button/Button";
 import Accordion from "../components/Button/Accordion";
 import Dropdown from "../components/Button/Dropdown";
 import ModalPage from "../components/Button/ModalPage";
-import Table from "../components/Button/Table";
+// import Table from "../components/Button/Table";
+import SortableTable from "../components/Button/SortableTable";
 
 export default function ButtonPage() {
   const [selection, setSelection] = useState(null);
@@ -51,12 +52,22 @@ export default function ButtonPage() {
   ];
 
   const config = [
-    { label: "Name", render: (data) => data.name },
+    {
+      label: "Name",
+      render: (data) => data.name,
+      sortValue: (data) => data.name,
+    },
     {
       label: "Color",
       render: (data) => <div className={`p-3 m-2 ${data.color}`}></div>,
+      
     },
-    { label: "Score", render: (data) => data.score ,header: ()=><th className="bg-red-500">Score</th>}
+    {
+      label: "Score",
+      render: (data) => data.score,
+      // header: () => <th className="bg-red-500">Score</th>,
+      sortValue: (data) => data.score,
+    },
   ];
 
   const keyFn = (fruit) => {
@@ -108,7 +119,7 @@ export default function ButtonPage() {
       </div>
       <div className="flex">
         <div className="m-5">
-          <Table data={data} config={config} keyFn={keyFn}/>
+          <SortableTable data={data} config={config} keyFn={keyFn} />
         </div>
       </div>
     </>
