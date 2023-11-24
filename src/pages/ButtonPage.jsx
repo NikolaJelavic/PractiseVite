@@ -56,8 +56,12 @@ export default function ButtonPage() {
       label: "Color",
       render: (data) => <div className={`p-3 m-2 ${data.color}`}></div>,
     },
-    { label: "Score", render: (data) => data.score },
+    { label: "Score", render: (data) => data.score ,header: ()=><th className="bg-red-500">Score</th>}
   ];
+
+  const keyFn = (fruit) => {
+    return fruit.name;
+  };
 
   return (
     <>
@@ -104,7 +108,7 @@ export default function ButtonPage() {
       </div>
       <div className="flex">
         <div className="m-5">
-          <Table data={data} config={config} />
+          <Table data={data} config={config} keyFn={keyFn}/>
         </div>
       </div>
     </>
