@@ -8,6 +8,7 @@ import Dropdown from "../components/Button/Dropdown";
 import ModalPage from "../components/Button/ModalPage";
 // import Table from "../components/Button/Table";
 import SortableTable from "../components/Button/SortableTable";
+import CounterPage from "../components/Button/CounterPage";
 
 export default function ButtonPage() {
   const [selection, setSelection] = useState(null);
@@ -121,6 +122,7 @@ export default function ButtonPage() {
         <div className="m-5">
           <SortableTable data={data} config={config} keyFn={keyFn} />
         </div>
+        <CounterPage initialCount={1}></CounterPage>
       </div>
     </>
   );
