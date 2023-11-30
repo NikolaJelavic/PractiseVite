@@ -122,7 +122,7 @@ export default function ButtonPage() {
         <div className="m-5">
           <SortableTable data={data} config={config} keyFn={keyFn} />
         </div>
-        <CounterPage initialCount={1}></CounterPage>
+        <CounterPage initialCount={2}></CounterPage>
       </div>
     </>
   );
