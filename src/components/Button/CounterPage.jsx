@@ -4,16 +4,18 @@ import Button from "./Button";
 import Panel from "./Panel";
 
 // import useCounter from "../../hooks/useCounter";
+const INCREMENT_COUNT = 'increment-count'
+const SET_VALUE_TO_ADD = 'change-value-to-add'
 
 const reducer = (state,action) => {
 
-    if(action.type==='increment'){
+    if(action.type===INCREMENT_COUNT){
         return  {
             ...state,
             count:state.count+1
         }
     }
-    if (action.type==='change-value-to-add'){
+    if (action.type===SET_VALUE_TO_ADD){
         return  {
             ...state,
             valueToAdd: action.payload,
@@ -32,7 +34,7 @@ const [state,dispatch] = useReducer (reducer, {
 console.log(state);
   const increment = () => {
     dispatch({
-        type:'increment'
+        type:INCREMENT_COUNT
     })
   };
 
@@ -45,7 +47,7 @@ console.log(state);
   const handleChange = (event) => {
     const value = parseInt(event.target.value) || 0;
     dispatch({
-        type:'change-value-to-add',
+        type:SET_VALUE_TO_ADD,
         payload: value,
     })
   }
