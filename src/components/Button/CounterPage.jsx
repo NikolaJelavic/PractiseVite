@@ -1,63 +1,74 @@
-// import { useState, useEffect } from "react";
 import { useReducer } from "react";
 import Button from "./Button";
 import Panel from "./Panel";
 
-// import useCounter from "../../hooks/useCounter";
-const INCREMENT_COUNT = 'increment-count'
-const SET_VALUE_TO_ADD = 'change-value-to-add'
+const INCREMENT_COUNT = "increment-count";
+const DECREMENT_COUNT = "decrement-count";
+const SET_VALUE_TO_ADD = "change-value-to-add";
+const ADD_VALUE_TO_COUNT = "add_value_to_count";
 
-const reducer = (state,action) => {
-
-    if(action.type===INCREMENT_COUNT){
-        return  {
-            ...state,
-            count:state.count+1
-        }
-    }
-    if (action.type===SET_VALUE_TO_ADD){
-        return  {
-            ...state,
-            valueToAdd: action.payload,
-        }
-    }
-    return state;
-}
+const reducer = (state, action) => {
+  switch (action.type) {
+    case INCREMENT_COUNT:
+      return {
+        ...state,
+        count: state.count + 1,
+      };
+    case DECREMENT_COUNT:
+      return {
+        ...state,
+        count: state.count - 1,
+      };
+    case SET_VALUE_TO_ADD:
+      return {
+        ...state,
+        valueToAdd: action.payload,
+      };
+    case ADD_VALUE_TO_COUNT:
+      return {
+        ...state,
+        count:state.count + state.valueToAdd,
+        valueToAdd:0
+      };
+    default:
+      // throw new Error('unexpected action type:' + action.type)
+      return state; //both options are OK
+  }
+};
 
 export default function CounterPage({ initialCount }) {
-//   const [count, setCount] = useState(initialCount);
-//   const [valueToAdd, setValueToAdd] = useState(0);
-const [state,dispatch] = useReducer (reducer, {
-    count:initialCount,
-    valueToAdd:0
-})
-console.log(state);
+  const [state, dispatch] = useReducer(reducer, {
+    count: initialCount,
+    valueToAdd: 0,
+  });
+  console.log(state);
   const increment = () => {
     dispatch({
-        type:INCREMENT_COUNT
-    })
+      type: INCREMENT_COUNT,
+    });
   };
 
   const decrement = () => {
     dispatch({
-        type:'decrement'
-    })
+      type: DECREMENT_COUNT,
+    });
   };
 
   const handleChange = (event) => {
     const value = parseInt(event.target.value) || 0;
     dispatch({
-        type:SET_VALUE_TO_ADD,
-        payload: value,
-    })
-  }
+      type: SET_VALUE_TO_ADD,
+      payload: value,
+    });
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // setCount(count+ valueToAdd);
-    // setValueToAdd(0);
-  }
+    dispatch({
+      type: ADD_VALUE_TO_COUNT,
+    });
+  };
   return (
     <Panel className="m-3">
       <h1 className="text-lg ">Count is {state.count}</h1>
@@ -67,7 +78,12 @@ console.log(state);
       </div>
       <form onSubmit={handleSubmit}>
         <label>Add a lot!</label>
-        <input value={state.valueToAdd || ''}  onChange={handleChange} type="number" className="p-1 m-3 bg-gray-50 border border-gray-300" />
+        <input
+          value={state.valueToAdd || ""}
+          onChange={handleChange}
+          type="number"
+          className="p-1 m-3 bg-gray-50 border border-gray-300"
+        />
         <Button>Add it!</Button>
       </form>
     </Panel>
