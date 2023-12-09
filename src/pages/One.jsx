@@ -41,7 +41,7 @@ export default function One() {
 
   return (
     <div>
-      {/* <Clicker message="Hi!" buttonText="CLick me" /> */}
+      {/* <Clicker message="Hi!" buttonText="Click me" /> */}
       {/* <PropertyList properties={properties} /> */}
 
       {/* <Quotes /> */}
