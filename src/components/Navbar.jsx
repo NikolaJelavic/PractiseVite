@@ -40,9 +40,7 @@ export default function Navbar() {
         >
           Home
         </Link>
-        {/* <Link to="/one" className="text-stone-900 hover:text-green-600 font-black text-xl">One</Link> */}
-        {/* <Link to="/two" className="text-stone-900 hover:text-green-600 font-black text-xl">Two</Link> */}
-        <div
+         <div
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           className="text-stone-900 font-black hover:text-green-600 text-xl"
@@ -58,18 +56,7 @@ export default function Navbar() {
           <div>Dropdown2</div>
           {isDropdownVisible2 && <Dropdown2 />}
         </div>
-        {/* <Link
-          to="/games"
-          className="text-stone-900 hover:text-green-600 font-black text-xl"
-        >
-          Games
-        </Link> */}
-        {/* <Link
-          to="/ButtonPage"
-          className="text-stone-900 hover:text-green-600 font-black text-xl"
-        >
-          ButtonPage
-        </Link> */}
+      
         <div
           onMouseEnter={handleMouseEnter3}
           onMouseLeave={handleMouseLeave3}
