@@ -5,7 +5,7 @@ export default function Dropdown1() {
     const links = [
         { label: "One", path: "/one" },
         { label: "Two", path: "/two" },
-        { label: "Three", path: "/three" },
+        { label: "ButtonPage", path: "/ButtonPage" },
       ];
       const renderedLinks = links.map((link) => {
         return (
