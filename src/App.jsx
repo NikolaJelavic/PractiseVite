@@ -8,6 +8,7 @@ import Games from "./pages/Games"
 import { Route, Routes } from "react-router-dom"
 import ButtonPage from './pages/ButtonPage';
 import Typescript from './pages/Typescript';
+import Jest from './pages/Jest';
 
 export default function App() {
 
@@ -22,6 +23,7 @@ export default function App() {
           <Route path="/games" element={<Games />} />
           <Route path="/ButtonPage" element={<ButtonPage />} />
           <Route path="/typescript" element={<Typescript />} />
+          <Route path="/jest" element={<Jest/>} />
 
           
         </Routes>
