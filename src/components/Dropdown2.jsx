@@ -5,7 +5,7 @@ export default function Dropdown2() {
   const links = [
     { label: "Games", path: "/games" },
     { label: "TypeScript", path: "/typescript" },
-    { label: "Y", path: "/y" },
+    { label: "Jest", path: "/jest" },
   ];
   const renderedLinks = links.map((link) => {
     return (
