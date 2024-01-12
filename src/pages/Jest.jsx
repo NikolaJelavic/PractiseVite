@@ -15,6 +15,8 @@ export default function Jest() {
         <UserForm onUserAdd={onUserAdd} />
         <hr />
         <UserList users={users} />
+        <br /><br />
+        <p>After a lot of time, I have realizes that Jest work only with pure React.</p>
       </div>
     );
 }
